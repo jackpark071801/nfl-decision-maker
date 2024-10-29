@@ -1,0 +1,50 @@
+# Paths for data files
+data:
+  train_path: "Data/model_train.csv.gz"
+  test_path: "Data/model_test.csv.gz"
+
+# Model configuration
+model:
+  nn_architecture:
+    layers:
+      - units: 128
+        activation: "relu"
+      - units: 64
+        activation: "relu"
+      - units: 32
+        activation: "relu"
+      - units: 1
+        activation: null # No activation for output layer in regression
+  response_variable: "score_differential"
+  feature_variables: [
+      "down_2.0",
+      "down_3.0",
+      "down_4.0",
+      "yardline_100",
+      "ydstogo",
+      "game_seconds_remaining",
+      "half_seconds_remaining",
+      "sc_diff",
+      "o_rtg",
+      "d_rtg",
+      "opp_o_rtg",
+      "opp_d_rtg",
+    ] # List of features to use in the model
+  interaction_terms: [] # Specify features to create interaction terms
+  include_all_features: false
+  include_all_interactions: true
+
+# Training configuration
+training:
+  epochs: 100
+  batch_size: 32
+  validation_split: 0.2
+
+# Paths for saving models and metrics
+output:
+  model_save_folder: "Models/win_prob_128_64_32_epochs_100_batch_32_validation_0.2"
+  scaler_path: "scaler.pkl"
+  nn_model_path: "score_differential_nn_model.h5"
+  linear_model_path: "score_differential_lr_model.pkl"
+  logistic_model_path: "score_differential_logistic_model.pkl" # Logistic regression model save path
+  metrics_save_path: "Metrics/win_prob_128_64_32_epochs_100_batch_32_validation_0.2/metrics.json" # Path for saving accuracy metrics JSON
