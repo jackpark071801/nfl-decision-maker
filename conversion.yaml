@@ -1,0 +1,22 @@
+# File paths
+file_paths:
+  model_save_folder: "Models/xgboost_3_0.1_100_42/"
+  data_path: "Data/conv_rate.csv"
+  model_save_path: "conversion_model.pkl"
+  metrics_save_path: "Metrics/xgboost_3_0.1_100_42/conversion_model_metrics.json"
+  plot_save_path: "conversion_model_performance.png"
+
+# XGBoost parameters
+xgboost_params:
+  max_depth: 3
+  learning_rate: 0.1
+  n_estimators: 100
+  objective: "binary:logistic"
+  eval_metric: "logloss"
+  use_label_encoder: False
+  random_state: 42
+
+# Data columns
+data:
+  features: ["ydstogo", "o_rtg", "opp_d_rtg"]
+  response: "conv"
